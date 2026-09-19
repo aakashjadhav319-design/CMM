@@ -628,17 +628,3 @@ elif page == "📁 Historical Database Records":
         st.subheader("Master CMM Points to Station/Locator Mapping")
         df_map = load_data("master_mapping")
         st.dataframe(df_map, use_container_width=True)
-   if uploaded_file is not None:
-    uploaded_file.seek(0)  # ✅ Indented with 4 spaces
-
-    try:
-        if uploaded_file.name.endswith('.xls'):
-            df_cmm = pd.read_excel(uploaded_file, engine='xlrd')
-        else:
-            df_cmm = pd.read_excel(uploaded_file, engine='openpyxl')
-
-        st.success(f"Successfully loaded `{uploaded_file.name}`")
-        st.dataframe(df_cmm.head())
-
-    except Exception as e:
-        st.error(f"Error reading Excel file: {e}")
