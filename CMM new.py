@@ -628,3 +628,16 @@ elif page == "📁 Historical Database Records":
         st.subheader("Master CMM Points to Station/Locator Mapping")
         df_map = load_data("master_mapping")
         st.dataframe(df_map, use_container_width=True)
+        if uploaded_file is not None:
+    uploaded_file.seek(0)
+    
+    try:
+        # Check if file is .xls or .xlsx
+        if uploaded_file.name.endswith('.xls'):
+            df_cmm = pd.read_excel(uploaded_file, engine='xlrd')
+        else:
+            try:
+                df_cmm = pd.read_excel(uploaded_file, engine='openpyxl')
+            except ModuleNotFoundError:
+                st.error("⚠️ `openpyxl` is missing. Please add `openpyxl` to your requirements.txt file and reboot the app.")
+                st.stop()
