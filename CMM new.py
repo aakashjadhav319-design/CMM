@@ -629,7 +629,7 @@ elif page == "📁 Historical Database Records":
         df_map = load_data("master_mapping")
         st.dataframe(df_map, use_container_width=True)
         if uploaded_file is not None:
-    uploaded_file.seek(0)
+            if uploaded_file.seek(0)
     
     try:
         # Check if file is .xls or .xlsx
